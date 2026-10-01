@@ -454,6 +454,112 @@ html[lang="fa"] .video-copy h3 {
   text-transform: none !important;
 }
 
+
+/* Timeline — visually aligned with the existing archive cards */
+.timeline-wrap{
+  position:relative;
+  margin-top:16px;
+  padding:3px 0 0 8px;
+}
+.timeline-wrap::before{
+  content:"";
+  position:absolute;
+  left:7px;
+  top:9px;
+  bottom:8px;
+  width:1px;
+  background:linear-gradient(to bottom, rgba(214,173,114,.7), rgba(214,173,114,.12));
+}
+.timeline-item{
+  position:relative;
+  padding:0 0 18px 25px;
+}
+.timeline-item:last-child{padding-bottom:4px}
+.timeline-dot{
+  position:absolute;
+  left:2px;
+  top:6px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:rgba(214,173,114,.9);
+  border:2px solid rgba(21,17,13,.95);
+  box-shadow:0 0 0 3px rgba(214,173,114,.10);
+}
+.timeline-date{
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.08em;
+  margin-bottom:3px;
+  opacity:.95;
+}
+.timeline-title{
+  color:rgba(250,235,210,.96);
+  font-size:14px;
+  line-height:1.35;
+  margin-bottom:3px;
+}
+.timeline-text{
+  color:rgba(240,225,199,.65);
+  font-size:12px;
+  line-height:1.6;
+}
+#app.fa-mode .timeline-date{
+  letter-spacing:0 !important;
+}
+
+
+/* Rubik — readable body copy for opened content panels */
+@font-face {
+  font-family: "Rubik Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/rubik:vf@5.2.5/arabic-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Rubik Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/rubik:vf@5.2.5/latin-wght-normal.woff2") format("woff2-variations");
+}
+
+/* Keep homepage, navigation and headings in Reem Kufi Fun */
+#app.fa-mode .hero-nav .nav-btn,
+#app.fa-mode .hero-subtitle,
+#app.fa-mode .hero-desc,
+#app.fa-mode .teaser-btn,
+#app.fa-mode .panel h2,
+#app.fa-mode .panel-title,
+#app.fa-mode .card-kicker,
+#app.fa-mode .card h3,
+#app.fa-mode .timeline-title {
+  font-family: "Reem Kufi Fun Variable", sans-serif !important;
+}
+
+/* Opened-panel body copy uses Rubik for readability */
+#app.fa-mode .panel-desc,
+#app.fa-mode .panel p,
+#app.fa-mode .card > p,
+#app.fa-mode .extra-inner,
+#app.fa-mode .timeline-date,
+#app.fa-mode .timeline-text,
+#app.fa-mode .tag,
+#app.fa-mode .video-copy {
+  font-family: "Rubik Variable", sans-serif !important;
+  font-variation-settings: "wght" 400;
+  letter-spacing: 0 !important;
+}
+
+/* A touch more comfortable for Persian reading */
+#app.fa-mode .panel p,
+#app.fa-mode .card > p,
+#app.fa-mode .extra-inner,
+#app.fa-mode .timeline-text {
+  line-height: 1.9;
+}
+
 </style>
 </head>
 <body>
@@ -583,7 +689,13 @@ const DATA = {
         title:"The URMAWI archive",
         desc:"A future reference point for biography, sources, visual material, music, research and the development history of the project.",
         cards:[
-          {k:"Timeline",t:"Life & historical context",p:"A concise interactive chronology connecting the life of Safi al-Din to the world around him.",x:"This can become one of the site's strongest educational components: clear, sourced and easy to explore.",tags:["Timeline","Biography","Context"]},
+          {k:"Timeline",t:"Life & historical context",p:"A concise interactive chronology connecting the life of Safi al-Din to the world around him.",x:"Key moments in his life, writings and historical setting, presented as a compact exploratory chronology.",tags:["Timeline","Biography","Context"],timeline:[
+            {date:"Early 13th century",title:"Early life and education",text:"The exact birth date is uncertain; some later scholarship places it around 1216."},
+            {date:"1252",title:"Kitab al-Adwar",text:"One of his major music-theory treatises, systematizing intervals, cycles and modal structures."},
+            {date:"1258",title:"The Mongol capture of Baghdad",text:"A major rupture in Baghdad's political and cultural life, forming part of the historical context of Urmawi's career."},
+            {date:"1267",title:"al-Risala al-Sharafiyya",text:"A major theoretical treatise that further developed his work on musical proportions and theory."},
+            {date:"1294",title:"Death",text:"Safi al-Din al-Urmawi died in Baghdad; his writings remained influential for later music theorists."}
+          ]},
           {k:"Sources",t:"Research library",p:"Selected manuscripts, books, articles and references with transparent source information.",x:"The archive should distinguish primary sources, later scholarship and artistic interpretation to maintain credibility.",tags:["Sources","Bibliography","Scholarship"]},
           {k:"Project Archive",t:"How URMAWI was built",p:"Books, screenplay, visual identity, music reconstruction and heritage designs documented in one place.",x:"This also preserves the authorship and chronology of the project as it develops across different media.",tags:["Documentation","Process","Project History"]}
         ]
@@ -594,9 +706,9 @@ const DATA = {
     nav: [["about","درباره"],["music","موسیقی"],["books","کتاب‌ها"],["film","فیلم"],["heritage","میراث"],["archive","آرشیو"]],
     hero: {
       title:"URMAWI",
-      subtitle:"پروژه میراث صفی‌الدین ارموی",
-      desc:"بازخوانی میراث یکی از چهره‌های برجسته تاریخ موسیقی ایران؛ از پژوهش و روایت تا فیلم، موسیقی، کتاب و حافظه فرهنگی.",
-      cta:"تماشای تیزر",
+      subtitle:"میراث صفی‌الدین ارموی",
+      desc:"بازخوانی میراث یکی از چهره‌های برجسته تاریخ موسیقی ایران و جهان",
+      cta:"تماشای تیزر فیلم نغمه‌ای میان فتنه‌ها",
       quoteFa:"صداها، پلی میان گذشته و آینده‌اند.",
       quoteEn:"“Sounds are a bridge between the past and the future.”",
       hint:"برای دیدن بخش‌های پروژه یکی از گزینه‌ها را انتخاب کنید",
@@ -610,8 +722,8 @@ const DATA = {
         desc:"URMAWI تلاشی است برای بازگرداندن صفی‌الدین ارموی به حافظه امروز؛ از مسیر پژوهش، روایت، فیلم، موسیقی و میراث عمومی.",
         cards:[
           {k:"چشم‌انداز",t:"چرا صفی‌الدین؟",p:"یکی از چهره‌های مهم تاریخ نظریه موسیقی که میراث او ظرفیت حضور دوباره در فرهنگ عمومی را دارد.",x:"این پروژه فقط زندگی‌نامه نیست؛ پژوهش، روایت، موسیقی، هویت بصری و حافظه عمومی را به هم متصل می‌کند.",tags:["هویت","پژوهش","فرهنگ"]},
-          {k:"پژوهش",t:"دو سال کار متمرکز",p:"مطالعه تاریخی، بررسی منابع و مشورت با متخصصان، پایه اصلی پروژه را شکل داده است.",x:"این پژوهش در تمام خروجی‌ها حضور دارد؛ از فیلمنامه و کتاب نوجوان تا هویت بصری و آرشیو آینده.",tags:["منابع","تاریخ","مشاوره"]},
-          {k:"مسیر",t:"از یک فیلم تا یک پروژه فرهنگی",p:"فیلم ۱۰ دقیقه‌ای به‌عنوان نخستین فصل جدی تصویری پروژه دیده شده، نه پایان آن.",x:"مسیر توسعه شامل کتاب، موسیقی بازسازی‌شده، آرشیو دیجیتال، یادمان و آثار تصویری بلندتر است.",tags:["فیلم","آرشیو","آینده"]}
+          {k:"پژوهش",t:"دو سال کار متمرکز",p:"مطالعه تاریخی، بررسی منابع و مشورت با متخصصان، پایه اصلی پروژه را شکل داده است.",x:"این پژوهش در تمام خروجی‌ها حضور دارد؛ از فیلمنامه و کتاب تا هویت بصری و آرشیو آینده.",tags:["منابع","تاریخ","مشاوره"]},
+          {k:"مسیر",t:"گامی کوچک برای صفی‌الدین",p:"گامی کوچک برای صفی‌الدین و گامی بزرگ برای فرهنگ این مرز و بوم.",x:"تلاشی برای بازگرداندن نام و میراث صفی‌الدین ارموی به گفت‌وگوی فرهنگی امروز و ساختن پلی میان پژوهش تاریخی، هنر و نسل‌های آینده.",tags:["فرهنگ","میراث","آینده"]}
         ]
       },
       music: {
@@ -619,8 +731,8 @@ const DATA = {
         title:"بازسازی موسیقی از دل تاریخ",
         desc:"فضایی برای موسیقی‌های بازسازی‌شده، نظریه موسیقی، ضبط‌ها و همکاری‌های مرتبط با میراث صفی‌الدین.",
         cards:[
-          {k:"همکاری",t:"موسیقی‌های بازسازی‌شده",p:"همکاری با استاد ملکی برای ارائه و تجاری‌سازی موسیقی‌های بازسازی‌شده مرتبط با صفی‌الدین ارموی.",x:"در آینده برای هر قطعه می‌توان فایل صوتی، نوازندگان، توضیح تاریخی و منبع پژوهشی قرار داد.",tags:["بازسازی","ضبط","انتشار"]},
-          {k:"نظریه",t:"نظام موسیقایی",p:"توضیح قابل‌فهم از ایده‌های نظری صفی‌الدین برای مخاطب عمومی.",x:"می‌توان نمودارها را با نمونه‌های شنیداری و تصویرسازی متحرک ترکیب کرد تا نظریه از حالت خشک دانشگاهی خارج شود.",tags:["نظریه","آموزش","تعاملی"]},
+          {k:"همکاری",t:"موسیقی‌های بازسازی‌شده",p:"همکاری با اساتید توانمند موسیقی برای ارائه و تجاری‌سازی موسیقی‌های بازسازی‌شده مرتبط با صفی‌الدین ارموی.",x:"در آینده برای هر قطعه می‌توان فایل صوتی، نوازندگان، توضیح تاریخی و منبع پژوهشی قرار داد.",tags:["بازسازی","ضبط","انتشار"]},
+          {k:"نظریه",t:"نظام موسیقایی",p:"توضیح قابل‌فهم از ایده‌های نظری صفی‌الدین برای مخاطب عمومی.",x:"توضیح قابل‌فهم از ایده‌های نظری صفی‌الدین برای مخاطب عمومی.",tags:["نظریه","آموزش","تعاملی"]},
           {k:"آینده",t:"آرشیو شنیداری",p:"خانه‌ای برای ضبط‌ها، اجراهای مختلف و مقایسه تفسیرهای موسیقایی.",x:"هر مدخل می‌تواند اطلاعات اجراکنندگان، منبع و مرز میان بازسازی تاریخی و برداشت هنری را شفاف کند.",tags:["صوت","آرشیو","اطلاعات"]}
         ]
       },
@@ -631,17 +743,17 @@ const DATA = {
         cards:[
           {k:"کتاب نوجوان",t:"معمای موسیقی در کتابخانه دربار",p:"داستانی برای نوجوانان با الهام از جهان صفی‌الدین ارموی.",x:"این کتاب می‌تواند نقطه ورود نسل نوجوان به شخصیت صفی‌الدین و مکمل برنامه‌های فرهنگی پیرامون فیلم باشد.",tags:["نوجوان","داستان","آموزش"]},
           {k:"رمان تاریخی",t:"رمان صفی‌الدین ارموی",p:"رمان تاریخی پروژه که در حال حاضر فصل نخست آن شکل گرفته است.",x:"رمان اجازه می‌دهد شخصیت، فضا و درام تاریخی فراتر از محدودیت زمانی فیلم کوتاه گسترش پیدا کند.",tags:["رمان","تاریخی","در حال توسعه"]},
-          {k:"انتشار",t:"یک خط نشر منسجم",p:"نسخه‌های آینده، یادداشت‌های پژوهشی و محتوای مصور می‌توانند زیر یک هویت بصری واحد منتشر شوند.",x:"این بخش قابلیت رشد دارد بدون اینکه سایت اصلی به یک پایگاه سنگین دانشگاهی تبدیل شود.",tags:["کتاب","طراحی","آرشیو"]}
+          {k:"انتشار",t:"یک خط نشر منسجم",p:"نسخه‌های آینده، یادداشت‌های پژوهشی و محتوای مصور می‌توانند زیر یک هویت بصری واحد منتشر شوند.",x:"نسخه‌های آینده، یادداشت‌های پژوهشی و محتوای مصور می‌توانند زیر یک هویت بصری واحد منتشر شوند.",tags:["کتاب","طراحی","آرشیو"]}
         ]
       },
       film: {
         eyebrow:"تصویر",
         title:"پروژه سینمایی",
-        desc:"هسته تصویری URMAWI؛ تیزر، فیلمنامه و فیلم تاریخی ۱۰ دقیقه‌ای به‌عنوان اثبات امکان ساخت یک جهان تصویری بزرگ‌تر.",
+        desc:"هسته تصویری URMAWI؛ تیزر، فیلمنامه و فیلم کوتاه تاریخی به‌عنوان اثبات امکان ساخت یک جهان تصویری بزرگ‌تر.",
         cards:[
-          {k:"تیزر",t:"تیزر مستند",p:"نمونه‌ای سینمایی برای نشان‌دادن لحن، فضای تاریخی و زبان بصری پروژه.",x:"در جلسه ارائه، تیزر می‌تواند اولین تماس احساسی باشد و بعد از آن پشتوانه پژوهشی و منطق تولید توضیح داده شود.",tags:["تیزر","نمونه اولیه","سینمایی"],action:"teaser"},
-          {k:"فیلمنامه",t:"توسعه فیلمنامه",p:"ساختار دراماتیکی که بر پژوهش تاریخی تکیه دارد، نه صرفاً مجموعه‌ای از تصاویر تاریخی.",x:"فیلمنامه باید مسیر احساسی روشنی داشته باشد و مرز میان واقعیت تاریخی و بازسازی هنری را حفظ کند.",tags:["فیلمنامه","درام","پژوهش"]},
-          {k:"فصل بعد",t:"فیلم کوتاه ۱۰ دقیقه‌ای",p:"یک فیلم تاریخی با کیفیت بالا برای اثبات کیفیت، سنجش واکنش مخاطب و بازکردن مسیر آثار بلندتر.",x:"در صورت موفقیت، فیلم می‌تواند پایه بصری مستند بلندتر، اثر نمایشی یا پیشنهاد سریال شود.",tags:["فیلم کوتاه","پایلوت","قابلیت سریال"]}
+          {k:"تیزر",t:"تیزر مستند",p:"نمونه‌ای سینمایی برای نشان‌دادن لحن، فضای تاریخی و زبان بصری پروژه.",x:"نمونه‌ای سینمایی برای نشان‌دادن لحن، فضای تاریخی و زبان بصری پروژه.",tags:["تیزر","نمونه اولیه","سینمایی"],action:"teaser"},
+          {k:"فیلمنامه",t:"توسعه فیلمنامه",p:"ساختار دراماتیکی که بر پژوهش تاریخی تکیه دارد، نه صرفاً مجموعه‌ای از تصاویر تاریخی.",x:"مسیری احساسی و روشن که مرز میان واقعیت تاریخی و بازسازی هنری را حفظ می‌کند.",tags:["فیلمنامه","درام","پژوهش"]},
+          {k:"فصل بعد",t:"فیلم کوتاه",p:"یک فیلم تاریخی برای بازکردن مسیر آثار بلندتر.",x:"بازسازی جهان فکری، احساسات و زیست تاریخی صفی‌الدین ارموی در قالب روایتی سینمایی.",tags:["فیلم کوتاه","تاریخ","روایت"]}
         ]
       },
       heritage: {
@@ -651,8 +763,8 @@ const DATA = {
         cards:[
           {k:"یادمان",t:"یادمان صفی‌الدین ارموی",p:"کانسپت یک یادمان فرهنگی برای تبدیل‌شدن به نشانه‌ای ماندگار در آینده.",x:"یادمان می‌تواند موسیقی، هندسه و هویت تاریخی ارومیه را در یک زبان معاصر فضای شهری به هم متصل کند.",tags:["یادمان","ارومیه","فضای شهری"]},
           {k:"تندیس",t:"تندیس صفی‌الدین",p:"طرح تندیس برای ایجاد یک حضور فیزیکی و قابل‌شناسایی از شخصیت تاریخی.",x:"تندیس پژوهش‌محور می‌تواند بخشی از یک طرح بزرگ‌تر میراثی باشد، نه صرفاً یک عنصر تزئینی.",tags:["تندیس","هویت","حافظه"]},
-          {k:"تمبر",t:"طرح تمبر یادبود",p:"یک اثر فرهنگی کوچک برای دیده‌شدن شخصیت خارج از حلقه متخصصان.",x:"تمبر نشان می‌دهد هویت بصری پروژه می‌تواند از فیلم و کتاب تا طراحی یادبود گسترش پیدا کند.",tags:["تمبر","یادبود","گرافیک"]},
-          {k:"هویت بصری",t:"با الهام از استاد حسین بهزاد",p:"زبان بصری پروژه از سنت نگارگری و تصویر ایرانی الهام گرفته است.",x:"هدف کپی‌کردن یک اثر تاریخی نیست؛ هدف ساخت هویتی معاصر با ریشه در فرهنگ تصویری ایران است.",tags:["هویت بصری","هنر ایرانی","طراحی"]}
+          {k:"تمبر",t:"طرح تمبر یادبود",p:"یک اثر فرهنگی برای دیده‌شدن شخصیت خارج از حلقه متخصصان.",x:"تمبر نشان می‌دهد هویت بصری پروژه می‌تواند از فیلم و کتاب تا طراحی یادبود گسترش پیدا کند.",tags:["تمبر","یادبود","گرافیک"]},
+          {k:"هویت بصری",t:"با الهام از استاد حسین بهزاد",p:"زبان بصری پروژه از سنت نگارگری و تصویر ایرانی الهام گرفته است.",x:"هدف ساخت هویتی معاصر با ریشه در فرهنگ تصویری ایران است.",tags:["هویت بصری","هنر ایرانی","طراحی"]}
         ]
       },
       archive: {
@@ -660,9 +772,15 @@ const DATA = {
         title:"آرشیو URMAWI",
         desc:"مرجعی در حال توسعه برای زندگی‌نامه، منابع، تصاویر، موسیقی، پژوهش و تاریخچه شکل‌گیری کل پروژه.",
         cards:[
-          {k:"خط زمانی",t:"زندگی و بستر تاریخی",p:"یک تایم‌لاین تعاملی برای پیوند زندگی صفی‌الدین با اتفاقات پیرامون او.",x:"این بخش می‌تواند یکی از مهم‌ترین اجزای آموزشی سایت باشد: روشن، منبع‌دار و قابل کاوش.",tags:["تایم‌لاین","زندگی‌نامه","تاریخ"]},
+          {k:"خط زمانی",t:"زندگی و بستر تاریخی",p:"یک تایم‌لاین تعاملی برای پیوند زندگی صفی‌الدین با اتفاقات پیرامون او.",x:"رویدادهای کلیدی زندگی، آثار و زمینه تاریخی صفی‌الدین در یک مسیر فشرده و قابل کاوش.",tags:["تایم‌لاین","زندگی‌نامه","تاریخ"],timeline:[
+            {date:"اوایل سده ۱۳ میلادی",title:"آغاز زندگی و آموزش",text:"تاریخ دقیق تولد در منابع یکسان نیست؛ برخی پژوهش‌ها حدود ۱۲۱۶ میلادی را پیشنهاد می‌کنند."},
+            {date:"۱۲۵۲",title:"کتاب الادوار",text:"یکی از مهم‌ترین رساله‌های او در نظریه موسیقی که نظام فواصل، ادوار و مقام‌ها را صورت‌بندی می‌کند."},
+            {date:"۱۲۵۸",title:"فتح بغداد به دست مغولان",text:"تحولی بزرگ در محیط سیاسی و فرهنگی بغداد؛ زندگی و فعالیت صفی‌الدین نیز در همین بستر تاریخی ادامه یافت."},
+            {date:"۱۲۶۷",title:"الرساله الشرفیه",text:"رساله‌ای مهم در نسبت‌ها و مباحث نظری موسیقی که جایگاه او را در سنت موسیقی علمی تثبیت کرد."},
+            {date:"۱۲۹۴",title:"درگذشت",text:"صفی‌الدین ارموی در بغداد درگذشت؛ آثار او قرن‌ها بر نظریه‌پردازان موسیقی پس از خود اثر گذاشت."}
+          ]},
           {k:"منابع",t:"کتابخانه پژوهشی",p:"نسخه‌ها، کتاب‌ها، مقالات و منابع منتخب با ذکر شفاف مرجع.",x:"آرشیو باید منبع اولیه، پژوهش متأخر و بازسازی هنری را از هم تفکیک کند تا اعتبار علمی حفظ شود.",tags:["منابع","کتاب‌شناسی","پژوهش"]},
-          {k:"آرشیو پروژه",t:"URMAWI چگونه ساخته شد",p:"کتاب‌ها، فیلمنامه، هویت بصری، بازسازی موسیقی و طراحی‌های میراثی در یک مسیر مستند.",x:"این بخش تاریخچه شکل‌گیری پروژه و مالکیت خلاقانه آن را در گذر زمان نیز ثبت می‌کند.",tags:["مستندسازی","فرآیند","تاریخچه پروژه"]}
+          {k:"آرشیو پروژه",t:"مسیری برای آیندگان",p:"کتاب‌ها، فیلمنامه، هویت بصری، بازسازی موسیقی و طراحی‌های میراثی در یک مسیر مستند.",x:"این مسیر قطعاً عاری از خطا یا ایراد نیست و در ادامه از تمامی نوابغ، پژوهشگران و نخبگان برای همکاری و تکمیل آن دعوت می‌کنیم.",tags:["مستندسازی","همکاری","آینده"]}
         ]
       }
     }
@@ -707,6 +825,17 @@ function renderHero(){
 }
 
 function cardHTML(c,idx){
+  const timeline = c.timeline ? `
+    <div class="timeline-wrap">
+      ${c.timeline.map(item=>`
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-date">${item.date}</div>
+          <div class="timeline-title">${item.title}</div>
+          <div class="timeline-text">${item.text}</div>
+        </div>
+      `).join("")}
+    </div>` : "";
   return `
   <button class="card" type="button" data-card="${idx}" ${c.action?`data-action="${c.action}"`:""}>
     <div class="card-top">
@@ -719,6 +848,7 @@ function cardHTML(c,idx){
     <p>${c.p}</p>
     <div class="card-extra"><div>
       <div class="extra-inner">${c.x}
+        ${timeline}
         <div class="tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
       </div>
     </div></div>
@@ -802,6 +932,11 @@ if (document.fonts && document.fonts.load) {
 
 if (document.fonts && document.fonts.load) {
   document.fonts.load('500 20px "Reem Kufi Fun Variable"').catch(() => {});
+}
+
+
+if (document.fonts && document.fonts.load) {
+  document.fonts.load('400 18px "Rubik Variable"').catch(() => {});
 }
 
 renderHero();
